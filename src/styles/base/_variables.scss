@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
+
+:root{
+    --night-color: #111317;
+    --dim-gray-color: #686C72;
+    --white-color: #fff;
+    --black-color: #000;
+
+    --toastify-icon-color-success: var(--white-color);
+
+    // GUNMETAL COLOR
+    --gunmetal-color: #242930;
+    --gunmetal-lighter-color: #282F36;
+    --gunmetal-darker-color: #20262C;
+
+    // BITTERSWEET COLOR
+    --bittersweet-color: #FF5B62;
+    --bittersweet-lighter-color: #FF6971;
+    --bittersweet-darker-color: #FA575F;
+
+    --battleship-gray-color: #929292;
+
+    // SEASALT COLOR
+    --seasalt-color: #F6F6F6;
+    --seasalt-darker-color: #F2F2F2;
+    --seasalt-color-2: #f7f7f8;
+
+    // BORDER COLOR
+    --platinum-color: #e2e5e9;
+
+    // PRESSED ITEM COLOR
+    --anti-white-color: #f2f2f3;
+
+    // MAJORELLE BLUE COLOR
+    --majorelle-blue-color: #7B47FF;
+    --majorelle-blue-lighter-color: #4E48FF;
+
+    // PERSIAN GREEN COLOR
+    --persian-green-color: #00AD96;
+
+    // PERSIMMON COLOR
+    --persimmon-color: #F25E0F;
+
+    // ICTERINE COLOR
+    --icterine--color: #FAF55A;
+}
+
+$bp-mobile: 480px;
+$bp-tablet: 768px;
+$bp-desktop: 1200px;

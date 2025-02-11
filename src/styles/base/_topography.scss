@@ -1,0 +1,127 @@
+input[type="search"]::-webkit-search-cancel-button{
+    display: none;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+	padding: 0;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+
+input[type="checkbox"] {
+    display: grid;
+    height: 20px;
+    min-height: 20px;
+    min-width: 20px;
+    width: 20px;
+    margin: 0;
+    font: inherit;
+    background-color: transparent; /* Background is transparent initially */
+    border: 1px solid var(--platinum-color);
+    border-radius: 5px;
+    transition: all 120ms ease-in-out;
+    cursor: pointer;
+    place-content: center;
+    appearance: none;
+}
+
+input[type="checkbox"]::before {
+    height: 10px;
+    width: 10px;
+    background-color: var(--bittersweet-color); /* This will color the polygon */
+    border-radius: 5px;
+    transition: transform 120ms ease-in-out;
+    content: "";
+    transform: scale(0);
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+
+input[type="checkbox"]:checked {
+    // background-color: var(--seasalt-color);
+    border: 1px solid var(--bittersweet-color); /* Background color when checked */
+}
+
+input[type="checkbox"]:checked::before {
+    transform: scale(1);
+}
+
+svg{
+    min-width: 20px;
+    transition: all 0.3s ease-out;
+}
+
+
+html, body{
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    overflow-x: hidden;
+    color: var(--black-color);
+    font-size: 16px;
+    line-height: 1.6;
+    background-color: var(--white-color);
+    -webkit-font-smoothing: antialiased;
+    scrollbar-width: none;
+}
+
+h1, h2, h3, h4, h5, h6, p{
+    overflow: hidden;
+    font-size: 100%;
+    font-weight: normal;
+    line-height: 1.3;
+    text-overflow: ellipsis;
+}
+
+h1, h2, h3, h4, h5, h6, a, button, label{
+    text-overflow: ellipsis;
+}
+
+img, object, embed {
+    display: block;
+    overflow: clip;
+    max-width: 100%;
+    object-fit: cover;
+}
+
+address, caption, cite, code, dfn, em, th, var {
+    font-style: normal;
+    font-weight: normal;
+}
+
+caption, th {
+    text-align: left;
+}
+
+.container{
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.backdrop{
+    left: 0;
+    position: fixed;
+    top: 0;
+    visibility: hidden;
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: all 0.3s cubic-bezier(0.6, 0.4, 0, 1);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.backdrop.open{
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+body.no-scroll{
+    overflow: hidden;
+}

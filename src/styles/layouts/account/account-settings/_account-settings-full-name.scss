@@ -1,0 +1,18 @@
+.account-settings{
+
+    &__full-name{
+        margin-bottom: 30px;
+    }
+
+    &__full-name--title{
+        margin-bottom: 20px;
+        font-size: 20px;
+        font-weight: 500;
+    }
+
+    &__full-name--inputs{
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+}

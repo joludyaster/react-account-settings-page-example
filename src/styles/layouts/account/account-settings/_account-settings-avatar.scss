@@ -1,0 +1,83 @@
+@use "../../../base/mixins" as *;
+
+.account-settings{
+    &__avatar{
+        display: flex;
+        margin-bottom: 30px;
+        gap: 40px;
+        align-items: center;
+
+        @include respond-to(900px){
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+        }
+    }
+
+    &__image{
+        height: 100px;
+        width: 100px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    &__avatar--buttons{
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+
+    &__avatar--button{
+        padding: 10px 15px;
+        color: var(--black-color);
+        font-size: 14px;
+        background-color: transparent;
+        border: 1px solid var(--platinum-color);
+        border-radius: 5px;
+        transition: all 0.3s cubic-bezier(0.6, 0.4, 0, 1);
+        cursor: pointer;
+
+        &:hover{
+            background-color: var(--seasalt-color);
+        }
+
+        &:active{
+            background-color: var(--seasalt-darker-color);
+        }
+    }
+
+    &__avatar--button-remove{
+        color: var(--white-color);
+        background-color: var(--bittersweet-color);
+
+        &:hover{
+            background-color: var(--bittersweet-lighter-color);
+        }
+
+        &:active{
+            background-color: var(--bittersweet-darker-color);
+        }
+    }
+    &__avatar--wrapper{
+        display: flex;
+        align-items: center;
+        gap: 20px;
+
+        @include respond-to(900px){
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+        }
+    }
+
+    &__avatar--title{
+        margin-bottom: 5px;
+        font-size: 20px;
+        font-weight: 500;
+    }
+
+    &__avatar--subtitle{
+        color: var(--battleship-gray-color);
+        font-size: 14px;
+    }
+}

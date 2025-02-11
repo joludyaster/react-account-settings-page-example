@@ -1,0 +1,52 @@
+@use "../../base/mixins" as *;
+
+.sidebar{
+
+    &__title{
+        margin-bottom: 25px;
+        font-size: 20px;
+        font-weight: 500;
+    }
+
+    &__list{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        @include respond-to(900px){
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
+    &__link{
+        padding: 10px 15px;
+        color: var(--battleship-gray-color);
+        font-size: 14px;
+        border-radius: 5px;
+        transition: all 0.3s cubic-bezier(0.6, 0.4, 0, 1);
+        cursor: pointer;
+
+        &:hover{
+            color: var(--black-color);
+            background-color: var(--seasalt-color);
+        }
+
+        &:active{
+            color: var(--black-color);
+            background-color: var(--seasalt-darker-color);
+        }
+    }
+
+    &__link--active{
+        color: var(--black-color);
+        background-color: var(--seasalt-darker-color);
+
+        &:hover{
+            color: var(--black-color);
+            background-color: var(--seasalt-darker-color);
+        }
+    }
+}

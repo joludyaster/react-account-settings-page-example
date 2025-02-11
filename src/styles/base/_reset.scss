@@ -1,0 +1,43 @@
+// GLOBAL AND BASIC STYLES
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Roboto Mono", sans-serif;
+    border: none;
+    outline: none;
+    list-style-type: none;
+}
+
+
+html::-webkit-scrollbar {
+    display: none;
+}
+
+main{
+    display: block;
+}
+
+
+fieldset, img {
+    border: 0;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+
+ol, ul {
+    list-style: none;
+}
+
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+div {
+    box-sizing: border-box;
+}

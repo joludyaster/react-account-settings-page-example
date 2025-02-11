@@ -1,0 +1,21 @@
+.account-settings{
+
+    &__email{
+        margin-bottom: 30px;
+    }
+
+    &__email--header{
+        margin-bottom: 30px;
+    }
+
+    &__email--title{
+        margin-bottom: 5px;
+        font-size: 20px;
+        font-weight: 500;
+    }
+
+    &__email--subtitle{
+        color: var(--battleship-gray-color);
+        font-size: 14px;
+    }
+}

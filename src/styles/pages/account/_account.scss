@@ -1,0 +1,62 @@
+@use "../../base/mixins" as *;
+
+.account {
+    &__container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+
+        @include respond-to(900px) {
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
+    &__content {
+        flex: 1;
+    }
+
+    &__sidebar {
+        max-width: 100%;
+        width: 200px;
+        flex-shrink: 0;
+
+        @include respond-to(900px) {
+            width: fit-content;
+            text-align: center;
+        }
+    }
+}
+
+.account__input-wrapper {
+    max-width: 100%;
+    width: 30%;
+
+    @include respond-to(desktop) {
+        width: 100%;
+    }
+}
+
+.account__input {
+    width: 100%;
+    padding: 10px 15px;
+    color: var(--black-color);
+    font-size: 14px;
+    background-color: transparent;
+    border: 1px solid var(--platinum-color);
+    border-radius: 5px;
+    transition: all 0.3s cubic-bezier(0.6, 0.4, 0, 1);
+    cursor: pointer;
+
+    &:focus {
+        background-color: var(--seasalt-color);
+    }
+}
+
+.account__input-label {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--battleship-gray-color);
+    font-size: 14px;
+}
