@@ -10,9 +10,7 @@
         font-weight: 500;
     }
 
-    &__full-name--inputs{
-        display: flex;
-        gap: 20px;
-        flex-wrap: wrap;
+    &__full-name--input-container{
+        margin-bottom: 30px;
     }
 }
