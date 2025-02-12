@@ -5,15 +5,6 @@ import { forwardRef } from "react";
 import { useSidebar } from "@src/hooks/useSidebar";
 import { useAvatar } from "@src/hooks/useAvatar";
 
-const links = {
-    Home: "/home",
-    Dashboard: "/dashboard",
-    Projects: "/projects",
-    Tasks: "/tasks",
-    Reporting: "/reporting",
-    Settings: "/account",
-};
-
 type NavigationBarProps = {
     children?: React.ReactNode;
 };
@@ -46,23 +37,17 @@ const NavigationBar = forwardRef<HTMLDivElement, NavigationBarProps>(
                         }`}
                         ref={ref}>
                         <ul className="header__list">
-                            {Object.entries(links).map(
-                                ([parameter, link], index) => (
-                                    <li key={index} className="header__item">
-                                        <NavLink
-                                            to={link}
-                                            className={({ isActive }) =>
-                                                isActive
-                                                    ? "header__link header__link--active"
-                                                    : "header__link"
-                                            }
-                                            onClick={handleLinkClick} // Close the sidebar on link click
-                                        >
-                                            {parameter}
-                                        </NavLink>
-                                    </li>
-                                )
-                            )}
+                            <NavLink
+                                to="/account"
+                                className={({ isActive }) =>
+                                    isActive
+                                        ? "header__link header__link--active"
+                                        : "header__link"
+                                }
+                                onClick={handleLinkClick} // Close the sidebar on link click
+                            >
+                                Settings
+                            </NavLink>
                         </ul>
                         <button className="header__button--account">
                             <img

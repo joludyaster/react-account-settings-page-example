@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 type CheckboxProps = {
     isChecked: boolean;
@@ -25,6 +26,14 @@ const Checkboxes = [
 
 export default function AccountNotificationSettings() {
     const [checkboxes, setCheckboxes] = useState(Checkboxes);
+
+    const handleSave = () => {
+        toast.success("Changes saved successfully!", {
+            delay: 1000,
+        });
+
+        setCheckboxes(Checkboxes);
+    };
 
     const updateCheckStatus = (index: number) => {
         setCheckboxes((prevCheckboxes) =>
@@ -67,7 +76,9 @@ export default function AccountNotificationSettings() {
                     ))}
                 </div>
                 <div className="notification-settings__in-app--buttons">
-                    <button className="notification-settings__in-app--button">
+                    <button
+                        className="notification-settings__in-app--button"
+                        onClick={handleSave}>
                         Save
                     </button>
                 </div>

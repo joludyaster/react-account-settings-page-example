@@ -2,6 +2,8 @@ import React, { useState, useRef, useCallback } from "react";
 import { useAvatar } from "@src/hooks/useAvatar"; // Assuming you have a custom hook for managing avatar
 import person from "@src/assets/1.jpg"; // Default image
 import svg_icons from "@icons/icons.svg";
+import { toast } from "react-toastify";
+import { usePasswordToggler } from "@src/hooks/usePasswordToggler";
 
 // Avatar Component
 const AvatarSection = ({
@@ -24,11 +26,19 @@ const AvatarSection = ({
         }
         const file = e.target.files[0];
         setAvatarUrl(URL.createObjectURL(file)); // Directly update avatar
+
+        toast.success("Image uploaded successfully!", {
+            delay: 1000,
+        });
     };
 
     const handleRemoveImage = () => {
         setAvatarUrl(""); // Reset avatar to default
         if (inputRef.current) inputRef.current.value = ""; // Clear file input
+
+        toast.success("Image removed successfully!", {
+            delay: 1000,
+        });
     };
 
     return (
@@ -92,35 +102,39 @@ const FullNameSection = ({
                 </h3>
             </div>
             <div className="account-settings__full-name--inputs">
-                <div className="account-settings__full-name--input-wrapper account__input-wrapper">
+                <div className="account-settings__full-name--input-wrapper">
                     <label
                         htmlFor="first-name"
                         className="account-settings__full-name--input-label account__input-label">
                         First name
                     </label>
-                    <input
-                        className="account-settings__full-name--input account__input"
-                        type="text"
-                        value={firstName}
-                        onChange={(e) => setFirstName(e.target.value)}
-                        placeholder="First name"
-                        maxLength={100}
-                    />
+                    <div className="account-settings__full-name--input-container account__input-container">
+                        <input
+                            className="account-settings__full-name--input account__input"
+                            type="text"
+                            value={firstName}
+                            onChange={(e) => setFirstName(e.target.value)}
+                            placeholder="First name"
+                            maxLength={100}
+                        />
+                    </div>
                 </div>
-                <div className="account-settings__full-name--input-wrapper account__input-wrapper">
+                <div className="account-settings__full-name--input-wrapper">
                     <label
                         htmlFor="last-name"
                         className="account-settings__full-name--input-label account__input-label">
                         Last name
                     </label>
-                    <input
-                        className="account-settings__full-name--input account__input"
-                        type="text"
-                        value={lastName}
-                        onChange={(e) => setLastName(e.target.value)}
-                        placeholder="Last name"
-                        maxLength={100}
-                    />
+                    <div className="account-settings__full-name--input-container account__input-container">
+                        <input
+                            className="account-settings__full-name--input account__input"
+                            type="text"
+                            value={lastName}
+                            onChange={(e) => setLastName(e.target.value)}
+                            placeholder="First name"
+                            maxLength={100}
+                        />
+                    </div>
                 </div>
             </div>
         </div>
@@ -145,20 +159,34 @@ const EmailSection = ({
                     Manage your email
                 </p>
             </div>
-            <div className="account-settings__email--input-wrapper account__input-wrapper">
+            <div className="account-settings__email--input-wrapper">
                 <label
                     htmlFor="email"
                     className="account-settings__email--input-label account__input-label">
                     Email
                 </label>
-                <input
-                    className="account-settings__email--input account__input"
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Email"
-                    maxLength={100}
-                />
+                <div className="account-settings__email--input-container account__input-container">
+                    <input
+                        className="account-settings__email--input account__input"
+                        type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="Email"
+                        maxLength={100}
+                    />
+                    <button className="account-settings__input--button account__input-button">
+                        <svg
+                            width="15"
+                            height="15"
+                            className="header__link--icon"
+                            style={{
+                                cursor: "pointer",
+                                fill: "var(--battleship-gray-color)",
+                            }}>
+                            <use href={`${svg_icons}#icon-lock`}></use>
+                        </svg>
+                    </button>
+                </div>
             </div>
         </div>
     );
@@ -176,6 +204,8 @@ const PasswordSection = ({
     setNewPassword: React.Dispatch<React.SetStateAction<string>>;
     setConfirmPassword: React.Dispatch<React.SetStateAction<string>>;
 }) => {
+    const { passwordFields, togglePasswordVisibility } = usePasswordToggler();
+
     return (
         <div className="account-settings__password">
             <div className="account-settings__password--header">
@@ -185,35 +215,87 @@ const PasswordSection = ({
                 </p>
             </div>
             <div className="account-settings__password--inputs">
-                <div className="account-settings__password--input-wrapper account__input-wrapper">
+                <div className="account-settings__password--input-wrapper">
                     <label
                         htmlFor="new-password"
                         className="account-settings__password--input-label account__input-label">
                         New password
                     </label>
-                    <input
-                        className="account-settings__password--input account__input"
-                        type="password"
-                        value={newPassword}
-                        onChange={(e) => setNewPassword(e.target.value)}
-                        placeholder="Password"
-                        maxLength={100}
-                    />
+                    <div className="account-settings__password--input-container account__input-container">
+                        <input
+                            className="account-settings__password--input account__input"
+                            type={
+                                passwordFields.newPassword?.type || "password"
+                            }
+                            value={newPassword}
+                            onChange={(e) => setNewPassword(e.target.value)}
+                            placeholder="Password"
+                            maxLength={100}
+                        />
+                        <button
+                            className="account-settings__input--button account__input-button"
+                            onClick={() =>
+                                togglePasswordVisibility("newPassword")
+                            }>
+                            <svg
+                                width="15"
+                                height="15"
+                                className="header__link--icon"
+                                style={{
+                                    cursor: "pointer",
+                                    fill: "var(--battleship-gray-color)",
+                                }}>
+                                <use
+                                    href={
+                                        passwordFields.newPassword?.visibility
+                                            ? `${svg_icons}#icon-closed-eye`
+                                            : `${svg_icons}#icon-opened-eye`
+                                    }></use>
+                            </svg>
+                        </button>
+                    </div>
                 </div>
-                <div className="account-settings__password--input-wrapper account__input-wrapper">
+                <div className="account-settings__password--input-wrapper">
                     <label
                         htmlFor="confirm-password"
                         className="account-settings__password--input-label account__input-label">
                         Confirm password
                     </label>
-                    <input
-                        className="account-settings__password--input account__input"
-                        type="password"
-                        value={confirmPassword}
-                        onChange={(e) => setConfirmPassword(e.target.value)}
-                        placeholder="Password"
-                        maxLength={100}
-                    />
+                    <div className="account-settings__password--input-container account__input-container">
+                        <input
+                            className="account-settings__password--input account__input"
+                            type={
+                                passwordFields.confirmPassword?.type ||
+                                "password"
+                            }
+                            value={confirmPassword}
+                            onChange={(e) => setConfirmPassword(e.target.value)}
+                            placeholder="Password"
+                            maxLength={100}
+                        />
+                        <button
+                            className="account-settings__input-button account__input-button"
+                            onClick={() =>
+                                togglePasswordVisibility("confirmPassword")
+                            }>
+                            <svg
+                                width="15"
+                                height="15"
+                                className="header__link--icon"
+                                style={{
+                                    cursor: "pointer",
+                                    fill: "var(--battleship-gray-color)",
+                                }}>
+                                <use
+                                    href={
+                                        passwordFields.confirmPassword
+                                            ?.visibility
+                                            ? `${svg_icons}#icon-closed-eye`
+                                            : `${svg_icons}#icon-opened-eye`
+                                    }></use>
+                            </svg>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -222,6 +304,18 @@ const PasswordSection = ({
 
 // Manage Account Component
 const ManageAccountSection = () => {
+    const handleLogout = () => {
+        toast.success("Logged out successfully!", {
+            delay: 1000,
+        });
+    };
+
+    const handleDeleteAccount = () => {
+        toast.success("Account deleted successfully!", {
+            delay: 1000,
+        });
+    };
+
     return (
         <div className="account-settings__manage">
             <div className="account-settings__manage--header">
@@ -233,13 +327,17 @@ const ManageAccountSection = () => {
                 </p>
             </div>
             <div className="account-settings__manage--buttons">
-                <button className="account-settings__manage--button">
+                <button
+                    className="account-settings__manage--button"
+                    onClick={handleLogout}>
                     <svg width="15" height="15" className="header__link--icon">
                         <use href={`${svg_icons}#icon-log-out`}></use>
                     </svg>
                     Log out
                 </button>
-                <button className="account-settings__manage--button account-settings__manage--button-delete">
+                <button
+                    className="account-settings__manage--button account-settings__manage--button-delete"
+                    onClick={handleDeleteAccount}>
                     Delete account
                 </button>
             </div>
@@ -257,6 +355,18 @@ const AccountSettings = () => {
 
     const [newPassword, setNewPassword] = useState<string>("");
     const [confirmPassword, setConfirmPassword] = useState<string>("");
+
+    const handleSave = () => {
+        toast.success("Changes saved successfully!", {
+            delay: 1000,
+        });
+        setFirstName("");
+        setLastName("");
+        setEmail("");
+
+        setNewPassword("");
+        setConfirmPassword("");
+    };
 
     return (
         <div className="account__account-settings">
@@ -281,6 +391,13 @@ const AccountSettings = () => {
                 setNewPassword={setNewPassword}
                 setConfirmPassword={setConfirmPassword}
             />
+            <div className="account-settings__buttons">
+                <button
+                    className="account-settings__button"
+                    onClick={handleSave}>
+                    Save
+                </button>
+            </div>
             <ManageAccountSection />
         </div>
     );
